@@ -1,10 +1,10 @@
 <?php
 
-namespace RenokiCo\:package_namespace;
+namespace RenokiCo\LaravelWeb3;
 
 use Illuminate\Support\ServiceProvider;
 
-class :package_service_provider extends ServiceProvider
+class LaravelWeb3ServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.
@@ -14,11 +14,11 @@ class :package_service_provider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('config.php'),
+            __DIR__.'/../config/web3.php' => config_path('web3.php'),
         ], 'config');
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'config'
+            __DIR__.'/../config/web3.php', 'web3'
         );
     }
 
