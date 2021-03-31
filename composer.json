@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "sc0vu/web3.php": "dev-master"
     },
     "autoload": {
         "psr-4": {
