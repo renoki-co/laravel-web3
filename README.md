@@ -24,7 +24,7 @@ If you are using your application in your day-to-day job, on presentation demos,
 You can install the package via composer:
 
 ```bash
-composer require renoki-co/laravel-web3
+composer require renoki-co/laravel-web3 --ignore-platform-reqs
 ```
 
 Publish the config:
@@ -35,8 +35,52 @@ $ php artisan vendor:publish --provider="RenokiCo\LaravelWeb3\LaravelWeb3Service
 
 ## 🙌 Usage
 
+The client configuration can be found in the `config/web3.php` file. Each call will be made from the `\Web3\Web3` class:
+
 ```php
-$ //
+use RenokiCo\LaravelWeb3\Web3Facade;
+
+Web3Facade::eth()->provider->execute(function ($err, $data) {
+    //
+});
+```
+
+## Multiple connections
+
+The package supports multiple connections configurations. If you wish to select a specific one (not the default one), call `connection` before getting the cluster.
+
+```php
+use RenokiCo\LaravelWeb3\Web3Facade;
+
+Web3Facade::connection('http2')->eth()->provider->execute(function ($err, $data) {
+    //
+});
+```
+
+## Additional methods
+
+The following methods are also available to start with:
+
+```php
+use RenokiCo\LaravelWeb3\Web3Facade;
+
+Web3Facade::eth(); // equivalent of $web3->eth
+Web3Facade::net();  // equivalent of $web3->net
+Web3Facade::personal();  // equivalent of $web3->personal
+Web3Facade::shh();  // equivalent of $web3->shh
+Web3Facade::utils();  // equivalent of $web3->utils
+```
+
+## Working with Contracts
+
+You can also initialize contracts with the same configuration:
+
+```php
+use RenokiCo\LaravelWeb3\Web3Facade;
+
+Web3Facade::contract($abi, 'latest')
+    ->bytecode($bytecode)
+    ->new($params, $callback);
 ```
 
 ## 🐛 Testing
