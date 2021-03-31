@@ -2,8 +2,8 @@
 
 namespace RenokiCo\LaravelWeb3;
 
-use Web3\Web3 as Web3Client;
 use Web3\Contract as Web3Contract;
+use Web3\Web3 as Web3Client;
 
 class Web3
 {
