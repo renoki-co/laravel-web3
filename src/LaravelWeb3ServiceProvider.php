@@ -21,12 +21,13 @@ class LaravelWeb3ServiceProvider extends ServiceProvider
             __DIR__.'/../config/web3.php', 'web3'
         );
 
-        $this->app->bind('laravel.web3', function () {
-            $connection = config('web3.default', 'http');
+        $this->app->bind('laravel.web3', function ($app) {
+            $config = $app['config']['web3'];
+            $connection = $config['default'] ?? 'http';
 
             return new Web3(
                 $connection,
-                $this->app['config']['web3']['connections'][$connection] ?? []
+                $config['connections'][$connection] ?? []
             );
         });
     }
