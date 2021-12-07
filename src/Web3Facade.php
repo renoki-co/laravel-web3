@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Web3\Web3 getClient()
  * @method static string clientVersion()
  * @method static string sha3(string $data)
- * @method static \Web3\Namespaces\Db db()
  * @method static \Web3\Namespaces\Eth eth()
  * @method static \Web3\Namespaces\Net net()
- * @method static \Web3\Namespaces\Shh shh()
  *
  * @see \Web3\Web3
  * @see \RenokiCo\LaravelWeb3\Web3

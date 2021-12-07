@@ -7,10 +7,8 @@ use Web3\Web3 as Web3Client;
 /**
  * @method static string clientVersion()
  * @method static string sha3(string $data)
- * @method \Web3\Namespaces\Db db()
  * @method \Web3\Namespaces\Eth eth()
  * @method \Web3\Namespaces\Net net()
- * @method \Web3\Namespaces\Shh shh()
  *
  * @see \Web3\Web3
  */

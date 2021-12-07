@@ -9,7 +9,7 @@ Laravel Web3 API Client
 [![Monthly Downloads](https://poser.pugx.org/renoki-co/laravel-web3/d/monthly)](https://packagist.org/packages/renoki-co/laravel-web3)
 [![License](https://poser.pugx.org/renoki-co/laravel-web3/license)](https://packagist.org/packages/renoki-co/laravel-web3)
 
-Laravel Web3 is a Laravel SDK wrapper for the [Web3 PHP API client](https://github.com/web3p/web3.php) that interacts with the Ethereum blockchain.
+Laravel Web3 is a Laravel SDK wrapper for the [Web3 PHP API client](https://github.com/web3-php/web3) that interacts with the Ethereum blockchain.
 
 ## 🤝 Supporting
 
@@ -36,11 +36,9 @@ $ php artisan vendor:publish --provider="RenokiCo\LaravelWeb3\LaravelWeb3Service
 The client configuration can be found in the `config/web3.php` file. Each call will be made from the `\Web3\Web3` class:
 
 ```php
-use RenokiCo\LaravelWeb3\Web3Facade;
+use RenokiCo\LaravelWeb3\Web3Facade as Web3;
 
-Web3Facade::eth()->provider->execute(function ($err, $data) {
-    //
-});
+Web3::eth()->hashRate();
 ```
 
 ## Multiple connections
@@ -48,11 +46,9 @@ Web3Facade::eth()->provider->execute(function ($err, $data) {
 The package supports multiple connections configurations. If you wish to select a specific one (not the default one), call `connection` before getting the cluster.
 
 ```php
-use RenokiCo\LaravelWeb3\Web3Facade;
+use RenokiCo\LaravelWeb3\Web3Facade as Web3;
 
-Web3Facade::connection('http2')->eth()->provider->execute(function ($err, $data) {
-    //
-});
+Web3Facade::connection('http2')->eth()->hashRate();
 ```
 
 ## Additional methods
@@ -60,25 +56,10 @@ Web3Facade::connection('http2')->eth()->provider->execute(function ($err, $data)
 The following methods are also available to start with:
 
 ```php
-use RenokiCo\LaravelWeb3\Web3Facade;
+use RenokiCo\LaravelWeb3\Web3Facade as Web3;
 
-Web3Facade::eth(); // equivalent of $web3->eth
-Web3Facade::net();  // equivalent of $web3->net
-Web3Facade::personal();  // equivalent of $web3->personal
-Web3Facade::shh();  // equivalent of $web3->shh
-Web3Facade::utils();  // equivalent of $web3->utils
-```
-
-## Working with Contracts
-
-You can also initialize contracts with the same configuration:
-
-```php
-use RenokiCo\LaravelWeb3\Web3Facade;
-
-Web3Facade::contract($abi, 'latest')
-    ->bytecode($bytecode)
-    ->new($params, $callback);
+Web3::eth()->coinbase();
+Web3::net()->version();
 ```
 
 ## 🐛 Testing
