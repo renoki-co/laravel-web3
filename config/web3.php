@@ -30,8 +30,6 @@ return [
         'http' => [
             'driver' => 'http',
             'host' => env('WEB3_HTTP_HOST', 'http://localhost:8545'),
-            'provider' => \Web3\Providers\HttpProvider::class,
-            'request_manager' => \Web3\RequestManagers\RequestManager::class,
         ],
 
     ],
