@@ -2,9 +2,16 @@
 
 namespace RenokiCo\LaravelWeb3;
 
-use Web3\Contract as Web3Contract;
 use Web3\Web3 as Web3Client;
 
+/**
+ * @method static string clientVersion()
+ * @method static string sha3(string $data)
+ * @method \Web3\Namespaces\Eth eth()
+ * @method \Web3\Namespaces\Net net()
+ *
+ * @see \Web3\Web3
+ */
 class Web3
 {
     /**
@@ -66,36 +73,7 @@ class Web3
     {
         $this->connection = $connection;
         $this->config = $config;
-
-        $this->client = new Web3Client($this->getProviderFromConfig($config));
-    }
-
-    /**
-     * Get the Web3 Client provider from configuration.
-     *
-     * @param  array  $config
-     * @return \Web3\Providers\Provider
-     */
-    protected function getProviderFromConfig(array $config)
-    {
-        $providerClass = $config['provider'] ?? \Web3\Providers\HttpProvider::class;
-        $requestManagerClass = $config['request_manager'] ?? \Web3\RequestManagers\RequestManager::class;
-
-        return new $providerClass(new $requestManagerClass(
-            $config['host'], $config['timeout'] ?? 1
-        ));
-    }
-
-    /**
-     * Create a new ETH contract.
-     *
-     * @param  string|\stdClass|array  $abi
-     * @param  mixed  $block
-     * @return \Web3\Contract
-     */
-    public function contract($abi, $block = 'latest')
-    {
-        return new Web3Contract($this->getProviderFromConfig($this->config), $abi, $block);
+        $this->client = new Web3Client($config['host']);
     }
 
     /**
@@ -106,56 +84,6 @@ class Web3
     public function getClient()
     {
         return $this->client;
-    }
-
-    /**
-     * Get the ETH client.
-     *
-     * @return \Web3\Eth
-     */
-    public function eth()
-    {
-        return $this->getClient()->getEth();
-    }
-
-    /**
-     * Get the Net client.
-     *
-     * @return \Web3\Net
-     */
-    public function net()
-    {
-        return $this->getClient()->getNet();
-    }
-
-    /**
-     * Get the Personal client.
-     *
-     * @return \Web3\Personal
-     */
-    public function personal()
-    {
-        return $this->getClient()->getPersonal();
-    }
-
-    /**
-     * Get the SHH client.
-     *
-     * @return \Web3\Shh
-     */
-    public function shh()
-    {
-        return $this->getClient()->getShh();
-    }
-
-    /**
-     * Get the Utils client.
-     *
-     * @return \Web3\Utils
-     */
-    public function utils()
-    {
-        return $this->getClient()->getUtils();
     }
 
     /**
