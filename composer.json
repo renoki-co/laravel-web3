@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "web3-php/web3": "dev-master"
     },
     "autoload": {
